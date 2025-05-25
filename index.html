@@ -53,6 +53,21 @@
             </div>
         </div>
 
+        <note>
+            Below are two password input implementations:
+            <ul>
+                <li><strong>First password field</strong> uses <code>type="text"</code> along with
+                    <code>-webkit-text-security</code> CSS to both hide and reveal password text,
+                    mimicking visibility toggling behavior using only HTML and CSS. While this is a clever
+                    pure-CSS approach, it's non-standard and may not work consistently across all browsers.
+                </li>
+                <li><strong>Second password field</strong> uses the standard and recommended
+                    <code>type="password"</code> input, with JavaScript used to toggle visibility. This ensures
+                    proper behavior, better accessibility, and broader browser support.
+                </li>
+            </ul>
+        </note>
+
         <div class="field-group">
             <label for="password">Password (required):</label>
             <div class="input-container">
@@ -61,8 +76,10 @@
                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$"
                     title="Min 8 chars: 1 uppercase, 1 lowercase, 1 digit, 1 special char."
                     placeholder="Enter a strong password" />
-                <label for="css-password-reveal-toggle" id="eye" class="password-reveal-toggle-btn" title="Show password"></label>
-                <label for="css-password-reveal-toggle" id="eye-off" class="password-reveal-toggle-btn" title="Hide password"></label>
+                <label for="css-password-reveal-toggle" id="eye" class="password-reveal-toggle-btn"
+                    title="Show password"></label>
+                <label for="css-password-reveal-toggle" id="eye-off" class="password-reveal-toggle-btn"
+                    title="Hide password"></label>
                 <span class="validation-indicator" valid user-valid>
                     <check></check>
                 </span>
@@ -71,6 +88,28 @@
                 </span>
             </div>
         </div>
+
+        <div class="field-group">
+            <label for="password-js">Password (required):</label>
+            <div class="input-container">
+                <input type="password" id="password-js" name="password-js" required
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$"
+                    title="Min 8 chars: 1 uppercase, 1 lowercase, 1 digit, 1 special char."
+                    placeholder="Enter a strong password" />
+                <span id="js-eye" class="password-reveal-toggle-btn" title="Show password"
+                    style="display: block;"></span>
+                <span id="js-eye-off" class="password-reveal-toggle-btn" title="Hide password"
+                    style="display: none;"></span>
+                <span class="validation-indicator" valid user-valid>
+                    <check></check>
+                </span>
+                <span class="validation-indicator" invalid user-invalid>
+                    <x></x>
+                </span>
+            </div>
+        </div>
+
+
 
         <div class="field-group">
             <label for="phone">Phone Number (optional):</label>
@@ -116,6 +155,26 @@
 
         <button type="submit">Submit Form</button>
     </form>
+
+    <script>
+        const passwordJS = document.getElementById('password-js');
+        const showJS = document.getElementById('js-eye');
+        const hideJS = document.getElementById('js-eye-off');
+
+        showJS.onclick = function () {
+            passwordJS.setAttribute("type", "text");
+            showJS.style.display = "none";
+            hideJS.style.display = "inline";
+        };
+
+        hideJS.onclick = function () {
+            passwordJS.setAttribute("type", "password");
+            showJS.style.display = "inline";
+            hideJS.style.display = "none";
+        };
+    </script>
+
+
 </body>
 
 </html>

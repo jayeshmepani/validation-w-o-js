@@ -72,7 +72,7 @@ form {
     .input-container {
         position: relative;
 
-        &:has(#password) {
+        &:has(#password, #password-js) {
 
             #css-password-reveal-toggle {
                 display: none;
@@ -115,18 +115,22 @@ form {
                 translate: 0 -50%;
             }
 
-            #eye {
+            #eye,
+            #js-eye {
                 -webkit-mask: url('eye.svg') no-repeat center;
                 mask: url('eye.svg') no-repeat center;
             }
 
-            #eye-off {
+            #eye-off,
+            #js-eye-off {
                 -webkit-mask: url('eye-off.svg') no-repeat center;
                 mask: url('eye-off.svg') no-repeat center;
             }
 
             #eye,
-            #eye-off {
+            #eye-off,
+            #js-eye,
+            #js-eye-off {
                 width: 24px;
                 height: 24px;
                 -webkit-mask-size: contain;
@@ -299,6 +303,34 @@ form {
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
+        }
+    }
+
+    note {
+        display: block;
+        background-color: #f0f8ff;
+        border-left: 4px solid #007BFF;
+        padding: 1em;
+        margin: 1.5em 0;
+        font-family: sans-serif;
+        font-size: 0.95rem;
+        color: #333;
+        border-radius: 5px;
+
+        ul {
+            padding-left: 1.2em;
+            margin: 0.5em 0 0 0;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        code {
+            background-color: #eef;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            font-family: monospace;
         }
     }
 }
